@@ -3,13 +3,17 @@ frontend:
   phases:
     preBuild:
       commands:
+        - echo "Installing pnpm..."
         - npm install -g pnpm
-        - pnpm install
+        - echo "Installing dependencies..."
+        - pnpm install --no-frozen-lockfile
     build:
       commands:
+        - echo "Starting build process..."
         - pnpm run build
+        - echo "Build completed"
   artifacts:
-    baseDirectory: dist  # Adjust this to your build output directory
+    baseDirectory: dist
     files:
       - '**/*'
   cache:
