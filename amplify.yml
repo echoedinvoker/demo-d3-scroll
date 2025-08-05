@@ -6,11 +6,11 @@ frontend:
         - echo "Installing pnpm..."
         - npm install -g pnpm
         - echo "Installing dependencies..."
-        - pnpm install --no-frozen-lockfile
+        - pnpm install --no-frozen-lockfile || (echo "pnpm install failed" && exit 1)
     build:
       commands:
         - echo "Starting build process..."
-        - pnpm run build
+        - pnpm run build || (echo "Build failed" && exit 1)
         - echo "Build completed"
   artifacts:
     baseDirectory: dist
